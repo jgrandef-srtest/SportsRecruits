@@ -13,9 +13,19 @@ class CreateRankings extends Migration
      */
     public function up()
     {
+	Schema::enableForeignKeyConstraints();
+
         Schema::create('rankings', function (Blueprint $table) {
             $table->id();
-            $table->timestamps();
+	    $table->unsignedInteger('user_id');
+	    $table->unsignedTinyInteger('ranking');
+            $table->timestamp('created_at');
+        });
+
+
+	// This probably wouldn't hurt either
+        Schema::table('rankings', function (Blueprint $table) {
+    	    $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
         });
     }
 
