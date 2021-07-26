@@ -10,6 +10,8 @@ class User extends Model
 {
     public $timestamps = false;
 
+    protected $ranking;
+
     /**
      * Players only local scope
      *
@@ -21,6 +23,10 @@ class User extends Model
         return $query->where('user_type', 'player');
     }
     
+    public function getLatestRankingAttribute() {
+	return $this->hasOne(Rankings::class)->latest();
+    }
+
     public function getIsGoalieAttribute(): bool
     {
         return (bool) $this->can_play_goalie;
