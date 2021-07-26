@@ -148,9 +148,6 @@ class TeamsRepository
     public function setPlayers($players)
     {
         $this->players = $players;
-	foreach ($players as &$p) {
-		$p->ranking = $p->getLatestRankingAttribute->ranking;
-	}
 
         return $this;
     }

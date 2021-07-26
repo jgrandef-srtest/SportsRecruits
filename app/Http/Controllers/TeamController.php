@@ -18,6 +18,10 @@ class TeamController extends Controller
     public function index(Request $request)
     {
         $players = User::ofPlayers()->get();
+
+	foreach ($players as &$p) {
+		$p->ranking = $p->getLatestRankingAttribute->ranking;
+	}
         
         $teams = $this->repository->fetchTeams($players);
         
