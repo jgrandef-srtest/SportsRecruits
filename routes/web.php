@@ -19,7 +19,7 @@ Route::get('/', 'TeamController@index')->name('index');
 //POST http://sports-recruits-challenge3.lcl/ranking/2?value=2
 Route::post('ranking/{user}', function (\App\Rankings $ranking, \Illuminate\Http\Request $request) {
 	$ranking->ranking = $request->input('value');
-	$Ranking->user_id = $request->input('user');
+	$ranking->user_id = $request->input('user');
 	$ranking->save();
 
 	response(200);
